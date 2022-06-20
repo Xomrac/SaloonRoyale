@@ -1,0 +1,144 @@
+﻿@startuml
+
+package CardSystem
+{
+    enum Suit
+    {
+        Hearts,
+        Diamonds,
+        Clubs,
+        Spades
+    }
+    
+    abstract class Card<<S, Violet>>
+    {
+        - [SerializeField] suit : Suit
+        - [SerializeField] image : Sprite
+        + GetSuit() : Suit
+        + GetImage() : Sprite
+    }
+    
+    class WeaponCard<<S, Violet>> implements Card
+    {
+        + damage : float
+    }
+    
+    class HealCard<<S, Violet>> implements Card
+    {
+        + heal : float
+    }
+    
+    class MissedCard<<S, Violet>> implements Card {}
+    
+    class Deck<<S, Violet>>
+    {
+        - [SerializeField] cards : List<Card>
+    }
+    
+    class DeckHolder<<M, yellow>>
+    {
+        - [SerializeField] deck : Deck
+        - cards : List<Card>
+        - discard : List<Card>
+        - hand : List<Card>
+        
+        + OnCardDiscarded : Action
+        + OnCardDraw : Action
+        + On
+        
+        + Discard(Card card) : void
+        + Draw(int n) : void
+        + Shuffle() : void
+        + ResetDeck() : void
+        + GetRandomCardFromHand() : void
+        + GetHandCards() : List<Cards>
+        + GetDiscardCards() : List<Cards>
+    }
+    
+    class DeckUI<<M, yellow>>
+    {
+        - [SerializeField] deckHolder : DeckHolder
+        + OnCardPicked : Action<Card>
+    }
+    
+    class CardUI<<M, yellow>>
+    {
+        + card : Card
+    }
+    
+    DeckUI -> DeckHolder
+    CardUI -> DeckUI
+    
+    Deck --o Card
+    Deck -> DeckHolder
+    Card -> Suit
+}
+
+class Health<<M, yellow>>
+{
+    - [SerializeField] currentLife : int
+    - [SerializeField] maxLife : int
+    
+    + Heal(int life) : void
+    + Deal(int life) : void
+    + GetCurrentLife() : int
+}
+
+class Character<<M, yellow>>
+{
+    + health : Health
+    + deckHolder : deckHolder
+}
+
+package GameSequencing
+{
+    class SequenceController<<M, yellow>>
+    {
+        - [SerializeField] camera : Camera
+        - [SerializeField] sequencePoints : List<SequencePoint>
+        - currentSequencePoint : SequencePoint
+        
+        + ArrivedOnPointSequence : Action<SequencePoint>
+        + GoToNextPointSequence() : void
+        - GoToPointSequenceCoroutine(SequencePoint sequencePoint) : IEnumerator
+    }
+
+    abstract class SequencePoint<<M, yellow>>
+    {
+        - [SerializeField] cameraPoint : Transform
+    }
+    
+    class EnemySequence<<M, yellow>> implements SequencePoint
+    {
+        - [SerializeField] enemy : Character
+    }
+    
+    class EmptySequence<<M, yellow>> implements SequencePoint
+    {
+        + waitTime : float
+    }
+    
+    SequenceController -o SequencePoint
+}
+
+package Core
+{
+    abstract class State 
+    {
+        + OnEnter(GameMechanics gameMechanics) : void
+        + Update(GameMechanics gameMechanics) : void
+    }
+    
+    class StateMachine<<M, yellow>>
+    {
+        + sequenceController : sequenceController
+        + mainCharacter : Character
+        - currentState : State
+        + ChangeState(State state) : void
+    }
+    
+    StateMachine -> State
+}
+
+
+@enduml
