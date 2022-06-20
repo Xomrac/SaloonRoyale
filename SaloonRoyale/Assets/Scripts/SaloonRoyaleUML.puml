@@ -38,16 +38,20 @@ package CardSystem
     class DeckHolder<<M, yellow>>
     {
         - [SerializeField] deck : Deck
+        - [SerializeField] maxHandSize : int
+        
         - cards : List<Card>
         - discard : List<Card>
         - hand : List<Card>
         
         + OnCardDiscarded : Action
         + OnCardDraw : Action
-        + On
+        + OnCardPicked : Action<Card>
         
-        + Discard(Card card) : void
         + Draw(int n) : void
+        + DrawUntilMaxHandSize() : void
+        + Discard(Card card) : void
+        + PickCard(Card card) : void
         + Shuffle() : void
         + ResetDeck() : void
         + GetRandomCardFromHand() : void
@@ -58,7 +62,6 @@ package CardSystem
     class DeckUI<<M, yellow>>
     {
         - [SerializeField] deckHolder : DeckHolder
-        + OnCardPicked : Action<Card>
     }
     
     class CardUI<<M, yellow>>
