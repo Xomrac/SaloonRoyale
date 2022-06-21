@@ -2,9 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using SaloonRoyale;
 using Sirenix.OdinInspector;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -52,7 +50,7 @@ namespace CardSystem
 
 		public Action OnCardDiscarded;
 		public Action OnCardDrawn;
-		public Action OnCardPlayed;
+		public Action<Card> OnCardPlayed;
 
 		#endregion
 
@@ -209,7 +207,7 @@ namespace CardSystem
 
 		public void PlayCard(Card cardToPlay)
 		{
-			OnCardPlayed?.Invoke();
+			OnCardPlayed?.Invoke(cardToPlay);
 		}
 
 		#region Piles
