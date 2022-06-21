@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Points
+namespace Sequencing.Points
 {
     public abstract class Point : MonoBehaviour
     {

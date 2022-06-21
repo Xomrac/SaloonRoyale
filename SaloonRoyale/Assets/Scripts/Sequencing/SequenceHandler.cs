@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using OpenCover.Framework.Model;
 using UnityEngine;
-using Point = Points.Point;
+using Point = Sequencing.Points.Point;
 
-namespace Sequencer
+namespace Sequencing
 {
     public class SequenceHandler : MonoBehaviour
     {
