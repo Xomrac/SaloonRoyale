@@ -20,12 +20,14 @@ package CardSystem
     
     class WeaponCard<<S, Violet>> implements Card
     {
-        + damage : float
+        + damageAmount : float
+        + GetDamageAmount() : float
     }
     
     class HealCard<<S, Violet>> implements Card
     {
-        + heal : float
+        - healAmount : float
+        + GetHealAmount() : float
     }
     
     class MissedCard<<S, Violet>> implements Card {}
@@ -33,6 +35,7 @@ package CardSystem
     class Deck<<S, Violet>>
     {
         - [SerializeField] cards : List<Card>
+        + GetCards() : List<Card> // Is a copy!
     }
     
     class DeckHolder<<M, yellow>>
@@ -59,22 +62,74 @@ package CardSystem
         + GetDiscardCards() : List<Cards>
     }
     
-    class DeckUI<<M, yellow>>
+    class HandsUI<<M, yellow>>
     {
+        - [SerializeField] cardsUI : List<CardUI>
         - [SerializeField] deckHolder : DeckHolder
     }
     
     class CardUI<<M, yellow>>
     {
-        + card : Card
+        - card : Card
+        + SetContent(Card card) : void
     }
     
-    DeckUI -> DeckHolder
-    CardUI -> DeckUI
+    
+    HandsUI --> DeckHolder
+    HandsUI -o CardUI
     
     Deck --o Card
     Deck -> DeckHolder
     Card -> Suit
+}
+
+package Sequencing
+{
+    class SequenceHandler<<M, yellow>>
+    {
+        - [SerializeField] camera : Camera
+        - [SerializeField] points : List<Point>
+        - currentPoint : Point
+        
+        + ArrivedOnPointSequence : Action<Point>
+        + GoToNextPointSequence() : void
+        - GoToPointSequenceCoroutine(SequencePoint sequencePoint) : IEnumerator
+    }
+
+    abstract class Point<<M, yellow>>
+    {
+        - [SerializeField] cameraPoint : Transform
+    }
+    
+    class EnemyPoint<<M, yellow>> implements Point
+    {
+        - [SerializeField] enemy : Character
+    }
+    
+    class EmptyPoint<<M, yellow>> implements Point
+    {
+        + waitTime : float
+    }
+    
+    SequenceHandler -o Point
+}
+
+package Core
+{
+    abstract class State<<M, yellow>>
+    {
+        + OnEnter(StateMachine stateMachine) : void
+        + Update(StateMachine stateMachine) : void
+        + OnExit(StateMachine stateMachine) : void
+    }
+    
+    class StateMachine<<M, yellow>>
+    {
+        - currentState : State
+        + ChangeState(State state) : void
+    }
+    
+    StateMachine --> State
 }
 
 class Health<<M, yellow>>
@@ -91,56 +146,6 @@ class Character<<M, yellow>>
 {
     + health : Health
     + deckHolder : deckHolder
-}
-
-package GameSequencing
-{
-    class SequenceController<<M, yellow>>
-    {
-        - [SerializeField] camera : Camera
-        - [SerializeField] sequencePoints : List<SequencePoint>
-        - currentSequencePoint : SequencePoint
-        
-        + ArrivedOnPointSequence : Action<SequencePoint>
-        + GoToNextPointSequence() : void
-        - GoToPointSequenceCoroutine(SequencePoint sequencePoint) : IEnumerator
-    }
-
-    abstract class SequencePoint<<M, yellow>>
-    {
-        - [SerializeField] cameraPoint : Transform
-    }
-    
-    class EnemySequence<<M, yellow>> implements SequencePoint
-    {
-        - [SerializeField] enemy : Character
-    }
-    
-    class EmptySequence<<M, yellow>> implements SequencePoint
-    {
-        + waitTime : float
-    }
-    
-    SequenceController -o SequencePoint
-}
-
-package Core
-{
-    abstract class State 
-    {
-        + OnEnter(GameMechanics gameMechanics) : void
-        + Update(GameMechanics gameMechanics) : void
-    }
-    
-    class StateMachine<<M, yellow>>
-    {
-        + sequenceController : sequenceController
-        + mainCharacter : Character
-        - currentState : State
-        + ChangeState(State state) : void
-    }
-    
-    StateMachine -> State
 }
 
 

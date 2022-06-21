@@ -2,12 +2,10 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
-/contentModel.xml
 /modules.xml
 /projectSettingsUpdater.xml
 /.idea.SaloonRoyale.iml
-# Editor-based HTTP Client requests
-/httpRequests/
+/contentModel.xml
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
