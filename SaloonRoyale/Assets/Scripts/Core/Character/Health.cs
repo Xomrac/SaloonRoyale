@@ -9,12 +9,13 @@ namespace Core.Character
 
         public void Heal(int life)
         {
-            currentLife = life;
+            currentLife += life;
+            currentLife = Mathf.Clamp(currentLife, 0, maxLife);
         }
 
         public void Deal(int life)
         {
-            currentLife = life;
+            currentLife -= life;
         }
 
         public int GetCurrentLife()
