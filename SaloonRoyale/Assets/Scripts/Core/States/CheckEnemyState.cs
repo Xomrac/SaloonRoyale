@@ -1,6 +1,6 @@
 namespace Core.States
 {
-    public class CheckPlayerState : State
+    public class CheckEnemyState : State
     {
         public override void OnEnter(StateMachine stateMachine)
         {
