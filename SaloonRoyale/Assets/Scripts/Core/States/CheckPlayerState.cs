@@ -2,19 +2,25 @@ namespace Core.States
 {
     public class CheckPlayerState : State
     {
+        private Health _playerHealth;
         public override void OnEnter(StateMachine stateMachine)
         {
-            throw new System.NotImplementedException();
+            //
         }
 
         public override void OnUpdate(StateMachine stateMachine)
         {
-            throw new System.NotImplementedException();
+            var currentHealth = _playerHealth.GetCurrentLife();
+
+            if (currentHealth <= 0)
+            {
+                stateMachine.ChangeState(new EndGameState());
+            }
         }
 
         public override void OnExit(StateMachine stateMachine)
         {
-            throw new System.NotImplementedException();
+            //
         }
     }
 }
