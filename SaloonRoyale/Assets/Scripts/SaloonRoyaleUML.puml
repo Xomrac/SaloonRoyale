@@ -126,16 +126,15 @@ package GameSequencing
 
 package Core
 {
-    abstract class State 
+    abstract class State<<M, yellow>>
     {
-        + OnEnter(GameMechanics gameMechanics) : void
-        + Update(GameMechanics gameMechanics) : void
+        + OnEnter(StateMachine stateMachine) : void
+        + Update(StateMachine stateMachine) : void
+        + OnExit(StateMachine stateMachine) : void
     }
     
     class StateMachine<<M, yellow>>
     {
-        + sequenceController : sequenceController
-        + mainCharacter : Character
         - currentState : State
         + ChangeState(State state) : void
     }
