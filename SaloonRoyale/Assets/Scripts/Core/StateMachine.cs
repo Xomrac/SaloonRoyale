@@ -8,6 +8,7 @@ namespace Core
         public StartGameState startGameState;
         public PlayerState playerState;
         public EnemyState enemyState;
+        public ProcessCardState processCardState;
         public CheckPlayerState checkPlayerState;
         public CheckEnemyState checkEnemyState;
         public EndGameState endGameState;
