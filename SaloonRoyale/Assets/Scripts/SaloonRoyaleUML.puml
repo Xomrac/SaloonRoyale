@@ -20,12 +20,14 @@ package CardSystem
     
     class WeaponCard<<S, Violet>> implements Card
     {
-        + damage : float
+        + damageAmount : float
+        + GetDamageAmount() : float
     }
     
     class HealCard<<S, Violet>> implements Card
     {
-        + heal : float
+        - healAmount : float
+        + GetHealAmount() : float
     }
     
     class MissedCard<<S, Violet>> implements Card {}
@@ -33,6 +35,7 @@ package CardSystem
     class Deck<<S, Violet>>
     {
         - [SerializeField] cards : List<Card>
+        + GetCards() : List<Card> // Is a copy!
     }
     
     class DeckHolder<<M, yellow>>
@@ -59,69 +62,56 @@ package CardSystem
         + GetDiscardCards() : List<Cards>
     }
     
-    class DeckUI<<M, yellow>>
+    class HandsUI<<M, yellow>>
     {
+        - [SerializeField] cardsUI : List<CardUI>
         - [SerializeField] deckHolder : DeckHolder
     }
     
     class CardUI<<M, yellow>>
     {
-        + card : Card
+        - card : Card
+        + SetContent(Card card) : void
     }
     
-    DeckUI -> DeckHolder
-    CardUI -> DeckUI
+    
+    HandsUI --> DeckHolder
+    HandsUI -o CardUI
     
     Deck --o Card
     Deck -> DeckHolder
     Card -> Suit
 }
 
-class Health<<M, yellow>>
+package Sequencing
 {
-    - [SerializeField] currentLife : int
-    - [SerializeField] maxLife : int
-    
-    + Heal(int life) : void
-    + Deal(int life) : void
-    + GetCurrentLife() : int
-}
-
-class Character<<M, yellow>>
-{
-    + health : Health
-    + deckHolder : deckHolder
-}
-
-package GameSequencing
-{
-    class SequenceController<<M, yellow>>
+    class SequenceHandler<<M, yellow>>
     {
         - [SerializeField] camera : Camera
-        - [SerializeField] sequencePoints : List<SequencePoint>
-        - currentSequencePoint : SequencePoint
+        - [SerializeField] points : List<Point>
+        - currentPoint : Point
         
-        + ArrivedOnPointSequence : Action<SequencePoint>
+        + ArrivedOnPointSequence : Action<Point>
         + GoToNextPointSequence() : void
         - GoToPointSequenceCoroutine(SequencePoint sequencePoint) : IEnumerator
     }
 
-    abstract class SequencePoint<<M, yellow>>
+    abstract class Point<<M, yellow>>
     {
         - [SerializeField] cameraPoint : Transform
     }
     
-    class EnemySequence<<M, yellow>> implements SequencePoint
+    class EnemyPoint<<M, yellow>> implements Point
     {
         - [SerializeField] enemy : Character
     }
     
-    class EmptySequence<<M, yellow>> implements SequencePoint
+    class EmptyPoint<<M, yellow>> implements Point
     {
         + waitTime : float
     }
     
-    SequenceController -o SequencePoint
+    SequenceHandler -o Point
 }
 
 package Core
@@ -139,7 +129,23 @@ package Core
         + ChangeState(State state) : void
     }
     
-    StateMachine -> State
+    StateMachine --> State
+}
+
+class Health<<M, yellow>>
+{
+    - [SerializeField] currentLife : int
+    - [SerializeField] maxLife : int
+    
+    + Heal(int life) : void
+    + Deal(int life) : void
+    + GetCurrentLife() : int
+}
+
+class Character<<M, yellow>>
+{
+    + health : Health
+    + deckHolder : deckHolder
 }
 
 
