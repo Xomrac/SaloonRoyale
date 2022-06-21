@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using OpenCover.Framework.Model;
 using UnityEngine;
+using Point = Points.Point;
 
 namespace Sequencer
 {
@@ -15,7 +16,7 @@ namespace Sequencer
 
         public Action<Point> ArrivedOnPointSequence()
         {
-            
+           
         }
 
         public void GoToNextPointSequence()
