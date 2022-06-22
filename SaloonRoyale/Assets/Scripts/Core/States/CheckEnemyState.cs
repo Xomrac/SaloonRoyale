@@ -1,20 +1,29 @@
+using Sequencing;
+
 namespace Core.States
 {
     public class CheckEnemyState : State
     {
+        private Character _enemyCharacter;
         public override void OnEnter(StateMachine stateMachine)
         {
-            throw new System.NotImplementedException();
+            var healthComponent = _enemyCharacter.health;
+            var currentHealth = healthComponent.GetCurrentLife();
+            
+            if (currentHealth <= 0)
+            {
+                Destroy(_enemyCharacter.gameObject);
+            }
         }
 
         public override void OnUpdate(StateMachine stateMachine)
         {
-            throw new System.NotImplementedException();
+            //Not Implemented
         }
 
         public override void OnExit(StateMachine stateMachine)
         {
-            throw new System.NotImplementedException();
+            //Not Implemented
         }
     }
 }
