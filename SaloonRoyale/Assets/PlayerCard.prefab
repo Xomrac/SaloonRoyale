@@ -346,6 +346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   suitImage: {fileID: 7344029420387231555}
   cardBackground: {fileID: 335012367099371165}
+  cardIllustration: {fileID: 4616209085186796852}
   cardName: {fileID: 6410264451777752543}
   cardEffect: {fileID: 6766410518753950040}
   selectButton: {fileID: 2132253187593014834}
