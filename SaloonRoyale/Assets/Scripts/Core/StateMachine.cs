@@ -7,6 +7,7 @@ namespace Core
     public class StateMachine : MonoBehaviour
     {
         public StartGameState startGameState;
+        public CheckSequenceState checkSequenceState;
         public PlayerState playerState;
         public EnemyState enemyState;
         public ProcessCardState processCardState;
