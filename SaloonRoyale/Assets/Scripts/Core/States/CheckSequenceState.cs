@@ -17,10 +17,11 @@ namespace Core.States
             
             void Continue(Point nextPoint)
             {
+                sequenceHandler.OnArrivedPoint -= Continue;
+                
                 switch (nextPoint)
                 {
                     case EmptyPoint:
-                        sequenceHandler.OnArrivedPoint -= Continue;
                         _stateMachine.ChangeState(_stateMachine.checkSequenceState);
                         break;
                     case EnemyPoint:
@@ -32,9 +33,28 @@ namespace Core.States
                         break;
                 }
             }
-            
-            sequenceHandler.OnArrivedPoint += Continue;
-            sequenceHandler.GoToNextPointSequence();
+
+            var currentPoint = sequenceHandler.GetCurrentPoint();
+            if (currentPoint is EnemyPoint)
+            {
+                var enemyPoint = (EnemyPoint)currentPoint;
+                var enemy = enemyPoint.GetEnemy();
+
+                if (enemy.health.GetCurrentLife() <= 0)
+                {
+                    sequenceHandler.OnArrivedPoint += Continue;
+                    sequenceHandler.GoToNextPointSequence();
+                }
+                else
+                {
+                    _stateMachine.ChangeState(_stateMachine.playerState);
+                }
+            }
+            else
+            {
+                sequenceHandler.OnArrivedPoint += Continue;
+                sequenceHandler.GoToNextPointSequence();
+            }
         }
 
         public override void OnUpdate(StateMachine stateMachine){}
