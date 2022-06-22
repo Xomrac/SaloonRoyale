@@ -6,8 +6,6 @@ namespace Core
 {
     public class StateMachine : MonoBehaviour
     {
-        public SequenceHandler sequencer;
-        public Character player;
         public StartGameState startGameState;
         public PlayerState playerState;
         public EnemyState enemyState;
