@@ -71,7 +71,7 @@ namespace Core.States
             {
                 timer += Time.deltaTime;
                 t = 1.0f - (timer / fadeOutUITime);
-                startGameCanvasGroup.alpha = fadeInUICurve.Evaluate(t);
+                startGameCanvasGroup.alpha = fadeOutUICurve.Evaluate(t);
                 yield return null;
             }
 
