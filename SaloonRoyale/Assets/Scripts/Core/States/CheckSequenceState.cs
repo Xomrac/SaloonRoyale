@@ -6,8 +6,9 @@ namespace Core.States
 {
     public class CheckSequenceState : State
     {
-        [SerializeField] private SequenceHandler sequenceHandler;
-
+        [SerializeField] 
+        private SequenceHandler sequenceHandler;
+        
         private StateMachine _stateMachine;
         
         public override void OnEnter(StateMachine stateMachine)
@@ -18,7 +19,6 @@ namespace Core.States
             {
                 switch (nextPoint)
                 {
-                    case StartPoint:
                     case EmptyPoint:
                         sequenceHandler.OnArrivedPoint -= Continue;
                         _stateMachine.ChangeState(_stateMachine.checkSequenceState);
