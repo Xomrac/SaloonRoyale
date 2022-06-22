@@ -13,14 +13,14 @@ namespace Sequencing
         [SerializeField] private List<Point> points;
         
         private Point _currentPoint;
-        public Point CurrentPoint => _currentPoint;
         private int _pointIndex = -1;
         
         public Action<Point> OnArrivedPoint;
-        
+
         public void GoToNextPointSequence()
         {
-            _pointIndex = Mathf.Clamp(++_pointIndex, 0, points.Count - 1);
+            _pointIndex++;
+            _pointIndex = Mathf.Clamp(_pointIndex, 0, points.Count - 1);
             StartCoroutine(GoToPointSequenceCoroutine(points[_pointIndex]));
         }
 
@@ -34,13 +34,16 @@ namespace Sequencing
             var timeToPoint = sequencePoint.GetTimeToPoint();
             var timer = 0f;
 
+            var startingPosition = camera.transform.position;
+            var startingRotation = camera.transform.rotation;
+
             while (timer < timeToPoint)
             {
                 timer += Time.deltaTime;
-                var t = timeToPoint / timer;
+                var t = timer / timeToPoint;
                 
-                camera.transform.position = Vector3.Lerp(_currentPoint.transform.position, sequencePoint.transform.position, pointToPointCurve.Evaluate(t));
-                camera.transform.rotation = Quaternion.Lerp(_currentPoint.transform.rotation, sequencePoint.transform.rotation, pointToPointCurve.Evaluate(t));
+                camera.transform.position = Vector3.Lerp(startingPosition, sequencePoint.GetCameraPoint().position, pointToPointCurve.Evaluate(t));
+                camera.transform.rotation = Quaternion.Lerp(startingRotation, sequencePoint.GetCameraPoint().rotation, pointToPointCurve.Evaluate(t));
 
                 yield return null;
             }
@@ -54,7 +57,6 @@ namespace Sequencing
 
         private void OnValidate()
         {
-            // Autofetch
             points.Clear();
             var fetchedPoints = GetComponentsInChildren<Point>();
             points = new List<Point>(fetchedPoints);
