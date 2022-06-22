@@ -26,6 +26,10 @@ namespace Core.States
                     case EnemyPoint:
                         _stateMachine.ChangeState(_stateMachine.playerState);
                         break;
+                    case EndPoint:
+                        _stateMachine.endGameState.SetCustomMessage("Congratulazioni! Hai liberato la cittadina!");
+                        _stateMachine.ChangeState(_stateMachine.endGameState);
+                        break;
                 }
             }
             

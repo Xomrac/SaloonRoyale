@@ -11,6 +11,7 @@ namespace Core.States
             
             if (currentHealth <= 0)
             {
+                stateMachine.endGameState.SetCustomMessage("Hai perso miseramente!");
                 stateMachine.ChangeState(stateMachine.endGameState);
             }
         }
