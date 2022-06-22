@@ -6,8 +6,8 @@ namespace CardSystem
 
 	public class HealCard : Card
 	{
-		[SerializeField] private float cardHealValue;
-		public float CardHealValue => cardHealValue;
+		[SerializeField] private int cardHealValue;
+		public int CardHealValue => cardHealValue;
 	}
 
 }

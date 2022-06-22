@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
-using UnityEditor;
 using UnityEngine;
 using Point = Sequencing.Points.Point;
 
@@ -15,6 +13,7 @@ namespace Sequencing
         [SerializeField] private List<Point> points;
         
         private Point _currentPoint;
+        public Point CurrentPoint => _currentPoint;
         private int _pointIndex = -1;
         
         public Action<Point> OnArrivedPoint;
@@ -23,6 +22,11 @@ namespace Sequencing
         {
             _pointIndex = Mathf.Clamp(++_pointIndex, 0, points.Count - 1);
             StartCoroutine(GoToPointSequenceCoroutine(points[_pointIndex]));
+        }
+
+        public Point GetCurrentPoint()
+        {
+            return _currentPoint;
         }
         
         private IEnumerator GoToPointSequenceCoroutine(Point sequencePoint)
