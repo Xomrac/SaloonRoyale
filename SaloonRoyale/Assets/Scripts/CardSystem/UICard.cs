@@ -19,16 +19,18 @@ namespace CardSystem
 		public TextMeshProUGUI cardEffect;
 		public Button selectButton;
 		public CanvasGroup canvasGroup;
+		public RectTransform offset;
 
 		private Coroutine enterCoroutine;
 		private Coroutine exitCoroutine;
 		public Coroutine moveCoroutine;
 		public Vector3 startPos;
-		private float verticalOffset;
 		[SerializeField]private float focusTime;
 		
 		public bool displayOnly=false;
 		private bool cardPlayed=false;
+		private bool moving = false;
+		public bool hovering;
 
 		private void Start()
 		{
@@ -44,24 +46,29 @@ namespace CardSystem
 
 		public IEnumerator FocusCoroutine()
 		{
+			moving = true;
 			float elapsedTime = 0;
 			while (elapsedTime<=focusTime)
 			{
-				transform.position = new Vector3(startPos.x, Mathf.Lerp(startPos.y, startPos.y + verticalOffset, elapsedTime / focusTime),startPos.z);
 				elapsedTime += Time.deltaTime;
+				transform.position = Vector3.Lerp(startPos, offset.position, elapsedTime / focusTime);
 				yield return null;
 			}
+			enterCoroutine = null;
+			moving = false;
 		}
 		public IEnumerator UnFocusCoroutine()
 		{
+			moving = true;
 			float elapsedTime = 0;
 			while (elapsedTime<=focusTime)
 			{
-				
-				transform.position = new Vector3(startPos.x, Mathf.Lerp(startPos.y + verticalOffset, startPos.y, elapsedTime / focusTime),startPos.z);
 				elapsedTime += Time.deltaTime;
+				transform.position = Vector3.Lerp(offset.position, startPos, elapsedTime / focusTime);
 				yield return null;
 			}
+			exitCoroutine = null;
+			moving = false;
 		}
 
 		public void SetupCard(Card cardToDisplay)
@@ -115,8 +122,9 @@ namespace CardSystem
 		
 		public void FocusCard()
 		{
-			if (!cardPlayed)
+			if (!cardPlayed )
 			{
+				hovering = true;
 				enterCoroutine ??= StartCoroutine(FocusCoroutine());
 			}
 			
@@ -126,6 +134,7 @@ namespace CardSystem
 		{
 			if (!cardPlayed)
 			{
+				hovering = false;
 				exitCoroutine ??= StartCoroutine(UnFocusCoroutine());
 			}
 		}

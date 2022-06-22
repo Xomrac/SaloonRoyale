@@ -273,6 +273,7 @@ namespace CardSystem
 		public void ResetDrawPile()
 		{
 			drawPile.pileCards = new List<Card>(playerDeck.DeckCards);
+			drawPile.pileCards.Shuffle();
 		}
 
 		public void ResetDiscardPile()
