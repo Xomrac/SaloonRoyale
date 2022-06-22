@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSuit: 0
   cardImage: {fileID: 0}
+  cardName: Missed-Duck
+  cardEffect: Dodge a bullet
+  cardBackground: {fileID: 0}

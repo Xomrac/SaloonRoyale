@@ -35545,7 +35545,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 45c640476001faa46bb22712d8d80d72, type: 2}
   hand:
     pileCards: []
-    maxHandSize: 0
+    maxHandSize: 3
   discardPile:
     pileCards: []
 --- !u!1001 &1091779794
@@ -48918,6 +48918,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0c5a2dc05e844ff8c3e0e142454be22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1456893737 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3101734924152926715, guid: ddba54bee274ef44ca0cc525762244a4, type: 3}
+  m_PrefabInstance: {fileID: 981636721016298681}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6259e9aae53c6854ea4f74cbd0b3a859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1458404809
@@ -74066,6 +74077,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3101734924152926715, guid: ddba54bee274ef44ca0cc525762244a4, type: 3}
+      propertyPath: maxLife
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101734924152926715, guid: ddba54bee274ef44ca0cc525762244a4, type: 3}
+      propertyPath: currentLife
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6204257362549717432, guid: ddba54bee274ef44ca0cc525762244a4, type: 3}
       propertyPath: m_Name
       value: Player
@@ -74223,6 +74242,14 @@ PrefabInstance:
       propertyPath: displayer
       value: 
       objectReference: {fileID: 1372707646}
+    - target: {fileID: 1707232777087669329, guid: 9eb67ee8fad05a34ab48ac4dfedd9c97, type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 715129955}
+    - target: {fileID: 1707232777087669329, guid: 9eb67ee8fad05a34ab48ac4dfedd9c97, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 1456893737}
     - target: {fileID: 1707232777189007472, guid: 9eb67ee8fad05a34ab48ac4dfedd9c97, type: 3}
       propertyPath: player
       value: 
@@ -74231,6 +74258,14 @@ PrefabInstance:
       propertyPath: uiHand
       value: 
       objectReference: {fileID: 1879450487}
+    - target: {fileID: 1707232777344163904, guid: 9eb67ee8fad05a34ab48ac4dfedd9c97, type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 715129955}
+    - target: {fileID: 1707232777511644719, guid: 9eb67ee8fad05a34ab48ac4dfedd9c97, type: 3}
+      propertyPath: _playerCharacter
+      value: 
+      objectReference: {fileID: 1456893736}
     - target: {fileID: 3381118884916321246, guid: 9eb67ee8fad05a34ab48ac4dfedd9c97, type: 3}
       propertyPath: sequenceHandler
       value: 

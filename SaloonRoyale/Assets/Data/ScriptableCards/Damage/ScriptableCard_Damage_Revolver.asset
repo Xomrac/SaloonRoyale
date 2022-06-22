@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSuit: 0
   cardImage: {fileID: 0}
-  cardDamage: 0
+  cardName: Damage-Revolver
+  cardEffect: Deals 3 Damage
+  cardBackground: {fileID: 0}
+  cardDamage: 3

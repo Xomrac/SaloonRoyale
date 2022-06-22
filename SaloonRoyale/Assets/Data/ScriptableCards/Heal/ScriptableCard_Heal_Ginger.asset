@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSuit: 0
   cardImage: {fileID: 0}
-  cardHealValue: 0
+  cardName: Heal-Ginger
+  cardEffect: Heal 2 health
+  cardBackground: {fileID: 0}
+  cardHealValue: 2

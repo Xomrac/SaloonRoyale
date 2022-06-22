@@ -1,8 +1,10 @@
+using UnityEngine;
+
 namespace Core.States
 {
     public class CheckPlayerState : State
     {
-        private Character _playerCharacter;
+        [SerializeField] Character _playerCharacter;
         
         public override void OnEnter(StateMachine stateMachine)
         {
@@ -13,6 +15,10 @@ namespace Core.States
             {
                 stateMachine.endGameState.SetCustomMessage("Hai perso miseramente!");
                 stateMachine.ChangeState(stateMachine.endGameState);
+            }
+            else
+            {
+                stateMachine.ChangeState(stateMachine.checkEnemyState);
             }
         }
 

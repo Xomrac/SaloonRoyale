@@ -560,6 +560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   suitImage: {fileID: 2170863059795257974}
   cardBackground: {fileID: 9182131909482632104}
+  cardIllustration: {fileID: 0}
   cardName: {fileID: 2539636726904201450}
   cardEffect: {fileID: 2750662738075481197}
   selectButton: {fileID: 7375778336624263943}
@@ -647,6 +648,7 @@ MonoBehaviour:
   - {fileID: 6487854440255784544}
   - {fileID: 2487174888588287515}
   canvasGroup: {fileID: 5758469975905180638}
+  displayer: {fileID: 7359927521719029136}
 --- !u!225 &5758469975905180638
 CanvasGroup:
   m_ObjectHideFlags: 0

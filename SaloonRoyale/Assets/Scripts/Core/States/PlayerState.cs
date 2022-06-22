@@ -15,7 +15,8 @@ namespace Core.States
         
         public override void OnEnter(StateMachine stateMachine)
         {
-            uiHand.DisplayCards();
+            
+            uiHand.DisplayHand();
             playerDeck = player.deckHolder;
             playerDeck.DrawToFillHand();
             cardPlayed = null;

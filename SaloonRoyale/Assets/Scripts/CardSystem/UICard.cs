@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DefaultNamespace;
 using Sirenix.Serialization;
 using TMPro;
 using UnityEngine;
@@ -80,16 +81,16 @@ namespace CardSystem
 			canvasGroup.alpha = 1;
 		}
 		
-		public void SetupCard(Card cardToDisplay, DeckHolder playerDeck)
+		public void SetupCard(Card cardToDisplay, DeckHolder playerDeck, UICardDisplayer uiCardDisplayer)
 		{
 			cardPlayed = false;
 			void SelectCard()
 			{
 				playerDeck.OnCardPlayed?.Invoke(cardToDisplay);
+				uiCardDisplayer.onPlayerCardPlayed?.Invoke(this);
 				canvasGroup.interactable = false;
 				canvasGroup.blocksRaycasts = false;
 				cardPlayed = true;
-				
 			}
 			card = cardToDisplay;
 			if (card.CardBackground!=null)

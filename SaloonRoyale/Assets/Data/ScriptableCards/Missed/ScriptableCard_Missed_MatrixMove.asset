@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSuit: 0
   cardImage: {fileID: 0}
+  cardName: Missed-Matrix Move
+  cardEffect: Dodge a bullet
+  cardBackground: {fileID: 0}
