@@ -32,7 +32,7 @@ namespace Core.States
         {
             if (Input.anyKeyDown)
             {
-                stateMachine.ChangeState(stateMachine.playerState);
+                stateMachine.ChangeState(stateMachine.checkSequenceState);
             }
         }
 
