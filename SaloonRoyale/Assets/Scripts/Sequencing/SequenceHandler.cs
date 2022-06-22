@@ -13,6 +13,7 @@ namespace Sequencing
         [SerializeField] private List<Point> points;
         
         private Point _currentPoint;
+        public Point CurrentPoint => _currentPoint;
         private int _pointIndex = -1;
         
         public Action<Point> OnArrivedPoint;

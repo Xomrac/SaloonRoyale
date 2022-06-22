@@ -136,6 +136,11 @@ namespace CardSystem
 			DrawCardsFromPile(amountToDraw, pileToDrawFrom);
 		}
 
+		public void DrawToFillHand()
+		{
+			DrawToFillHand(drawPile);
+		}
+
 		public void DrawRandomCardFromPile(CardPile pileToDrawFrom)
 		{
 			DrawCardFromPile(GetRandomCardFromPile(pileToDrawFrom), pileToDrawFrom);
@@ -209,6 +214,12 @@ namespace CardSystem
 		{
 			OnCardPlayed?.Invoke(cardToPlay);
 		}
+		
+		public Card PlayRandomCardFromHand()
+		{
+			int randomIndex = Random.Range(0, hand.pileCards.Count);
+			return hand.pileCards[randomIndex];
+		}
 
 		#region Piles
 
@@ -252,7 +263,7 @@ namespace CardSystem
 
 		#region Piles Reset
 
-		private void ResetAllPiles()
+		public void ResetAllPiles()
 		{
 			ResetDrawPile();
 			ResetHand();
@@ -283,6 +294,7 @@ namespace CardSystem
 		private void Start()
 		{
 			ResetAllPiles();
+			DrawToFillHand();
 		}
 
 		#region Debug Methods
