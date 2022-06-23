@@ -45060,6 +45060,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy_1
       objectReference: {fileID: 0}
+    - target: {fileID: 3201309986964162890, guid: be3ec53567fb7b943a8873c6486305cb, type: 3}
+      propertyPath: maxLife
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201309986964162890, guid: be3ec53567fb7b943a8873c6486305cb, type: 3}
+      propertyPath: currentLife
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be3ec53567fb7b943a8873c6486305cb, type: 3}
 --- !u!4 &1278358422 stripped
