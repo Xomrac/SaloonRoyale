@@ -27,6 +27,7 @@ namespace Core.States
         {
             cardPlayed = enemyDeck.PlayRandomCardFromHand();
             displayer.onEnemyCardPlayed?.Invoke(cardPlayed);
+            enemyDeck.DiscardCard(cardPlayed);
             stateMachine.ChangeState(stateMachine.processCardState);
         }
 

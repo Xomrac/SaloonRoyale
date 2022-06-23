@@ -34,6 +34,7 @@ namespace Core.States
         private void GetPlayedCard(Card playedCard)
         {
             cardPlayed = playedCard;
+            playerDeck.DiscardCard(playedCard);
         }
         
         public override void OnExit(StateMachine stateMachine)
