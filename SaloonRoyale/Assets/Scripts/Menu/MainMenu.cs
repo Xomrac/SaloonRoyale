@@ -1,27 +1,58 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+namespace Menu
 {
-    [SerializeField] private Button playButton;
-
-    private void Awake()
+    public class MainMenu : MonoBehaviour
     {
-        playButton.onClick.AddListener(LoadScene);
-    }
+        [SerializeField] private Button playButton;
+        [SerializeField] private AudioTrack assignedAudioTrack;
 
-    private void LoadScene()
-    {
-        StartCoroutine(LoadSceneCo());
-    }
+        private AudioSystem _audioSystem;
 
-    private IEnumerator LoadSceneCo()
-    {
-        yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(sceneBuildIndex: 1);
+        private Action _onMenuStart;
+
+        private void OnEnable()
+        {
+            _onMenuStart += PlayAudio;
+        }
+
+        private void Awake()
+        {
+            playButton.onClick.AddListener(LoadScene);
+        
+            _audioSystem = FindObjectOfType<AudioSystem>();
+        }
+
+        private void Start()
+        {
+            _onMenuStart?.Invoke();
+        }
+
+        private void LoadScene()
+        {
+            StartCoroutine(LoadSceneCo());
+        }
+
+        private IEnumerator LoadSceneCo()
+        {
+            yield return new WaitForSeconds(2f);
+            SceneManager.LoadScene(sceneBuildIndex: 1);
+        }
+    
+        private void PlayAudio()
+        {
+            var audioClip = assignedAudioTrack.GetClip();
+            _audioSystem.PlaySoundtrack(audioClip);
+        }
+
+        private void OnDisable()
+        {
+            _onMenuStart -= PlayAudio;
+        }
     }
 }
