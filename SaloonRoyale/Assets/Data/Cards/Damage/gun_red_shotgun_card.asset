@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: gun_red_shotgun_card
   m_EditorClassIdentifier: 
   cardSuit: 2
+  suitImage: {fileID: 21300000, guid: e3497b8ea3bb7f145998956ba23d0bca, type: 3}
   cardImage: {fileID: 21300000, guid: 34c830c7229ea104ba77833355df38e2, type: 3}
   cardName: Fucile
   cardEffect: Infligge 4 danni

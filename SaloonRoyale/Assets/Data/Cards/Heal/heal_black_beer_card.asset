@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: heal_black_beer_card
   m_EditorClassIdentifier: 
   cardSuit: 3
+  suitImage: {fileID: 21300000, guid: 3172abf7c4bf5f647b053e97a381d19d, type: 3}
   cardImage: {fileID: 21300000, guid: 52949e5ca9bd67d41a576f05c5bd9d22, type: 3}
   cardName: Birra
   cardEffect: Cura 1 ferita

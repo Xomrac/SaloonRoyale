@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: gun_red_knife_card
   m_EditorClassIdentifier: 
   cardSuit: 2
+  suitImage: {fileID: 21300000, guid: e3497b8ea3bb7f145998956ba23d0bca, type: 3}
   cardImage: {fileID: 21300000, guid: 9e88f2c360835de459711cd4f4369d46, type: 3}
   cardName: Coltello
   cardEffect: Infligge 2 danni
