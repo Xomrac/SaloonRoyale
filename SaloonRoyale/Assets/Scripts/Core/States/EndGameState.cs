@@ -2,6 +2,7 @@ using System.Collections;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Core.States
 {
@@ -35,7 +36,8 @@ namespace Core.States
             if (Input.anyKeyDown)
             {
                 // Application quit or return to the menu
-                Application.Quit();
+                //Application.Quit();
+                SceneManager.LoadScene(sceneBuildIndex:0);
             }
         }
 
