@@ -83,6 +83,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: a0458d7d9b9162946912c7e2d69d5e0a, type: 2}
   hand:
     pileCards: []
-    maxHandSize: 0
+    maxHandSize: 3
   discardPile:
     pileCards: []

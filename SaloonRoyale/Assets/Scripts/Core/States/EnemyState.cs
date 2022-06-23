@@ -17,7 +17,7 @@ namespace Core.States
         public Card CardPlayed => cardPlayed;
         public override void OnEnter(StateMachine stateMachine)
         {
-            var point = sequencer.CurrentPoint as EnemyPoint;
+            var point = sequencer.GetCurrentPoint() as EnemyPoint;
             currentEnemy = point.GetEnemy();
             enemyDeck = currentEnemy.deckHolder;
             enemyDeck.DrawToFillHand();

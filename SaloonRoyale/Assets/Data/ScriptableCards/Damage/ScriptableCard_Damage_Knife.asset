@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSuit: 0
   cardImage: {fileID: 0}
-  cardDamage: 0
+  cardName: Damage-Knife
+  cardEffect: Deals 2 Damages
+  cardBackground: {fileID: 0}
+  cardDamage: 2

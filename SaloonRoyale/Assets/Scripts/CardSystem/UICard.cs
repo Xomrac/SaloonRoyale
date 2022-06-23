@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using DefaultNamespace;
+using Sirenix.Serialization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +14,7 @@ namespace CardSystem
 		private Card card;
 		public Image suitImage;
 		public Image cardBackground;
+		public Image cardIllustration;
 		public TextMeshProUGUI cardName;
 		public TextMeshProUGUI cardEffect;
 		public Button selectButton;
@@ -65,25 +68,39 @@ namespace CardSystem
 		{
 			cardPlayed = true;
 			card = cardToDisplay;
-			cardBackground.sprite = card.CardBackground;
+			if (card.CardBackground!=null)
+			{
+				cardBackground.sprite = card.CardBackground;
+			}
+			if (card.CardImage!=null)
+			{
+				cardIllustration.sprite = card.CardImage;
+			}
 			cardName.text = card.CardName;
 			cardEffect.text = card.CardEffect;
 			canvasGroup.alpha = 1;
 		}
 		
-		public void SetupCard(Card cardToDisplay, DeckHolder playerDeck)
+		public void SetupCard(Card cardToDisplay, DeckHolder playerDeck, UICardDisplayer uiCardDisplayer)
 		{
 			cardPlayed = false;
 			void SelectCard()
 			{
 				playerDeck.OnCardPlayed?.Invoke(cardToDisplay);
+				uiCardDisplayer.onPlayerCardPlayed?.Invoke(this);
 				canvasGroup.interactable = false;
 				canvasGroup.blocksRaycasts = false;
 				cardPlayed = true;
-				
 			}
 			card = cardToDisplay;
-			cardBackground.sprite = card.CardBackground;
+			if (card.CardBackground!=null)
+			{
+				cardBackground.sprite = card.CardBackground;
+			}
+			if (card.CardImage!=null)
+			{
+				cardIllustration.sprite = card.CardImage;
+			}
 			cardName.text = card.CardName;
 			cardEffect.text = card.CardEffect;
 			if (!displayOnly)

@@ -3,6 +3,8 @@ using System.Collections;
 using CardSystem;
 using DefaultNamespace;
 using JetBrains.Annotations;
+using Sequencing;
+using Sequencing.Points;
 using UnityEngine;
 
 namespace Core.States
@@ -26,8 +28,9 @@ namespace Core.States
 		private CardActions playerAction;
 		private CardActions enemyAction;
 
-		private Health playerHealth;
-		private Health enemyhealth;
+		[SerializeField]private Health playerHealth;
+		private Health enemyHealth;
+		[SerializeField]private SequenceHandler sequencer;
 
 		private bool cardDisplaying;
 
@@ -35,6 +38,7 @@ namespace Core.States
 		{
 			playerCard = stateMachine.playerState.CardPlayed;
 			enemyCard = stateMachine.enemyState.CardPlayed;
+			enemyHealth = (sequencer.GetCurrentPoint() as EnemyPoint).GetEnemy().health;
 			playerAction = playerCard switch
 			{
 				DamageCard damageCard => CardActions.Damage,
@@ -73,7 +77,7 @@ namespace Core.States
 					case CardActions.Damage:
 					{
 						int playerDamage = enemyAction != CardActions.Dodge ? (playerCard as DamageCard).CardDamage : 0;
-						enemyhealth.Deal(playerDamage);
+						enemyHealth.Deal(playerDamage);
 						break;
 					}
 					case CardActions.Heal:
@@ -95,7 +99,7 @@ namespace Core.States
 					case CardActions.Heal:
 					{
 						int enemyHealAmount = (enemyCard as HealCard).CardHealValue;
-						enemyhealth.Heal(enemyHealAmount);
+						enemyHealth.Heal(enemyHealAmount);
 						break;
 					}
 				}
@@ -108,7 +112,7 @@ namespace Core.States
 
 		public override void OnExit(StateMachine stateMachine)
 		{
-			throw new System.NotImplementedException();
+			
 		}
 	}
 
