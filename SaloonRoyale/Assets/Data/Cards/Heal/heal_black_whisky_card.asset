@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 158c234e1b9d40ee98d83bc0efa009e0, type: 3}
-  m_Name: ScriptableCard_Heal_Medicine
+  m_Name: heal_black_whisky_card
   m_EditorClassIdentifier: 
-  cardSuit: 0
-  cardImage: {fileID: 0}
-  cardName: Heal-Medicine
-  cardEffect: Heal 3 health
-  cardBackground: {fileID: 0}
-  cardHealValue: 3
+  cardSuit: 1
+  cardImage: {fileID: 21300000, guid: 98723fe7c454dd448abfa362a72db0fa, type: 3}
+  cardName: Whisky
+  cardEffect: Cura 2 ferite
+  cardBackground: {fileID: 21300000, guid: 4304e1a16fbd5ff46abbecd7d9fe0115, type: 3}
+  cardHealValue: 2

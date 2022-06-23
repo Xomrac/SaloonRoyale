@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88be2a85b6174a4d8fbaf565a3e0c139, type: 3}
-  m_Name: ScriptableCard_Damage_Revolver
+  m_Name: gun_red_knife_card
   m_EditorClassIdentifier: 
-  cardSuit: 0
-  cardImage: {fileID: 0}
-  cardName: Damage-Revolver
-  cardEffect: Deals 3 Damage
-  cardBackground: {fileID: 0}
-  cardDamage: 3
+  cardSuit: 2
+  cardImage: {fileID: 21300000, guid: 9e88f2c360835de459711cd4f4369d46, type: 3}
+  cardName: Coltello
+  cardEffect: Infligge 2 danni
+  cardBackground: {fileID: 21300000, guid: 4304e1a16fbd5ff46abbecd7d9fe0115, type: 3}
+  cardDamage: 2

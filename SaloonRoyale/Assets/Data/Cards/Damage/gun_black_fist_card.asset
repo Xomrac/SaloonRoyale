@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88be2a85b6174a4d8fbaf565a3e0c139, type: 3}
-  m_Name: ScriptableCard_Damage_Fist
+  m_Name: gun_black_fist_card
   m_EditorClassIdentifier: 
-  cardSuit: 0
-  cardImage: {fileID: 0}
-  cardName: Damage-Fist
-  cardEffect: Deal 1 Damage
-  cardBackground: {fileID: 0}
+  cardSuit: 3
+  cardImage: {fileID: 21300000, guid: 3dd440bfbe0d1f44e8561ec89e5c4bc4, type: 3}
+  cardName: Pugno
+  cardEffect: Infligge 1 danno
+  cardBackground: {fileID: 21300000, guid: 4304e1a16fbd5ff46abbecd7d9fe0115, type: 3}
   cardDamage: 1

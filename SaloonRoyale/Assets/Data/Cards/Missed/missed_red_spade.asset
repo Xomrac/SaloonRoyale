@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 434c73e3fd5248e994e3935e663f5705, type: 3}
-  m_Name: ScriptableCard_Missed_Duck
+  m_Name: missed_red_spade
   m_EditorClassIdentifier: 
-  cardSuit: 0
-  cardImage: {fileID: 0}
-  cardName: Missed-Duck
-  cardEffect: Dodge a bullet
-  cardBackground: {fileID: 0}
+  cardSuit: 1
+  cardImage: {fileID: 21300000, guid: f26533206433845449ec39d75cf4b554, type: 3}
+  cardName: Schivata
+  cardEffect: Schiva un colpo
+  cardBackground: {fileID: 21300000, guid: 4304e1a16fbd5ff46abbecd7d9fe0115, type: 3}

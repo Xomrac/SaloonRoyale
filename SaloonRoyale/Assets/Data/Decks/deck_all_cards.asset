@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 158c234e1b9d40ee98d83bc0efa009e0, type: 3}
-  m_Name: ScriptableCard_Heal_Ginger
+  m_Script: {fileID: 11500000, guid: 11afa636a66a4a17918da0cbd4480194, type: 3}
+  m_Name: deck_all_cards
   m_EditorClassIdentifier: 
-  cardSuit: 0
-  cardImage: {fileID: 0}
-  cardName: Heal-Ginger
-  cardEffect: Heal 2 health
-  cardBackground: {fileID: 0}
-  cardHealValue: 2
+  deckCards: []
