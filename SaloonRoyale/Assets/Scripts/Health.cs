@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
     [SerializeField] private int currentLife;
     [SerializeField] private int maxLife;
+
+    public Action<int> OnHealthChanged;
 
     public void Heal(int life)
     {
