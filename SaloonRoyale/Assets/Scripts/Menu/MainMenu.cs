@@ -33,6 +33,14 @@ namespace Menu
             _onMenuStart?.Invoke();
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+        }
+
         private void LoadScene()
         {
             StartCoroutine(LoadSceneCo());
