@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: gun_black_knife_card
   m_EditorClassIdentifier: 
   cardSuit: 1
+  suitImage: {fileID: 21300000, guid: c4d51a884ddee80438e9463882e25e3e, type: 3}
   cardImage: {fileID: 21300000, guid: 98a258e7836280a4b83a99b58505805d, type: 3}
   cardSuitsSprite: {fileID: 21300000, guid: c4d51a884ddee80438e9463882e25e3e, type: 3}
   cardName: Coltello

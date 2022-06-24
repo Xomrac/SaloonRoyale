@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: heal_red_beer_card
   m_EditorClassIdentifier: 
   cardSuit: 0
+  suitImage: {fileID: 21300000, guid: 29267fea4cdebf841b04d45c142184ba, type: 3}
   cardImage: {fileID: 21300000, guid: 71febaed2ede2b148ae0c16fa3c597d7, type: 3}
   cardSuitsSprite: {fileID: 21300000, guid: 29267fea4cdebf841b04d45c142184ba, type: 3}
   cardName: Birra

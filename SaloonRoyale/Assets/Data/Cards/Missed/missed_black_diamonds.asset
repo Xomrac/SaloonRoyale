@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: missed_black_diamonds
   m_EditorClassIdentifier: 
   cardSuit: 2
+  suitImage: {fileID: 21300000, guid: e3497b8ea3bb7f145998956ba23d0bca, type: 3}
   cardImage: {fileID: 21300000, guid: 7ffba9e997f3a7d44b4e575796e77c12, type: 3}
   cardSuitsSprite: {fileID: 21300000, guid: e3497b8ea3bb7f145998956ba23d0bca, type: 3}
   cardName: Schivata

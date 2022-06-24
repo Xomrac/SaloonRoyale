@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: missed_red_spade
   m_EditorClassIdentifier: 
   cardSuit: 1
+  suitImage: {fileID: 21300000, guid: c4d51a884ddee80438e9463882e25e3e, type: 3}
   cardImage: {fileID: 21300000, guid: f26533206433845449ec39d75cf4b554, type: 3}
   cardSuitsSprite: {fileID: 21300000, guid: c4d51a884ddee80438e9463882e25e3e, type: 3}
   cardName: Schivata

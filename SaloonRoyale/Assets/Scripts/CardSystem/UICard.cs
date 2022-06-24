@@ -83,6 +83,10 @@ namespace CardSystem
 			{
 				cardIllustration.sprite = card.CardImage;
 			}
+			if (card.SuitImage!=null)
+			{
+				suitImage.sprite = card.SuitImage;
+			}
 			cardName.text = card.CardName;
 			cardEffect.text = card.CardEffect;
 			canvasGroup.alpha = 1;
@@ -107,6 +111,10 @@ namespace CardSystem
 			if (card.CardImage!=null)
 			{
 				cardIllustration.sprite = card.CardImage;
+			}
+			if (card.SuitImage!=null)
+			{
+				suitImage.sprite = card.SuitImage;
 			}
 			cardName.text = card.CardName;
 			cardEffect.text = card.CardEffect;

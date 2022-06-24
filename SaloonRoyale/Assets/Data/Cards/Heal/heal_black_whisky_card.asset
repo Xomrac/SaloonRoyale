@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: heal_black_whisky_card
   m_EditorClassIdentifier: 
   cardSuit: 1
+  suitImage: {fileID: 21300000, guid: c4d51a884ddee80438e9463882e25e3e, type: 3}
   cardImage: {fileID: 21300000, guid: 98723fe7c454dd448abfa362a72db0fa, type: 3}
   cardSuitsSprite: {fileID: 21300000, guid: c4d51a884ddee80438e9463882e25e3e, type: 3}
   cardName: Whisky
