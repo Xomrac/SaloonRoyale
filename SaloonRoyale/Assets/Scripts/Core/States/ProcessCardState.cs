@@ -1,15 +1,12 @@
-using System;
 using System.Collections;
 using CardSystem;
-using DefaultNamespace;
-using JetBrains.Annotations;
+using CardSystem.PlayerUI;
 using Sequencing;
 using Sequencing.Points;
 using UnityEngine;
 
 namespace Core.States
 {
-
 	public enum CardActions
 	{
 		Damage,
@@ -19,100 +16,101 @@ namespace Core.States
 
 	public class ProcessCardState : State
 	{
-
 		public float cardDisplayTime;
-		[SerializeField] private UICardDisplayer displayer;
-		private Card playerCard;
-		private Card enemyCard;
 
 		private CardActions playerAction;
 		private CardActions enemyAction;
 
-		[SerializeField]private Health playerHealth;
-		private Health enemyHealth;
-		[SerializeField]private SequenceHandler sequencer;
-
-		private bool cardDisplaying;
+		[SerializeField] private Character playerCharacter;
+		[SerializeField] private SequenceHandler sequencer;
+		[SerializeField] private ProcessCardsUI processCardUI;
+		
+		private StateMachine _stateMachine;
 
 		public override void OnEnter(StateMachine stateMachine)
 		{
-			playerCard = stateMachine.playerState.CardPlayed;
-			enemyCard = stateMachine.enemyState.CardPlayed;
-			enemyHealth = (sequencer.GetCurrentPoint() as EnemyPoint).GetEnemy().health;
+			_stateMachine = stateMachine;
+			
+			var playerCard = processCardUI.GetPlayerCard();
+			var enemyCard = processCardUI.GetEnemyCard();
+
+			var enemyPoint = sequencer.GetCurrentPoint() as EnemyPoint;
+			if (enemyPoint == null)
+			{
+				Debug.LogError("Enter in process card state but no enemy in sequence.");
+				return;
+			}
+			
+			var enemy = enemyPoint.GetEnemy();
+
 			playerAction = playerCard switch
 			{
-				DamageCard damageCard => CardActions.Damage,
-				HealCard healCard => CardActions.Heal,
-				MissedCard missedCard => CardActions.Dodge,
+				DamageCard => CardActions.Damage,
+				HealCard => CardActions.Heal,
+				MissedCard => CardActions.Dodge,
 				_ => playerAction
 			};
 			enemyAction = enemyCard switch
 			{
-				DamageCard damageCard => CardActions.Damage,
-				HealCard healCard => CardActions.Heal,
-				MissedCard missedCard => CardActions.Dodge,
+				DamageCard => CardActions.Damage,
+				HealCard => CardActions.Heal,
+				MissedCard => CardActions.Dodge,
 				_ => enemyAction
 			};
+			
+			switch (playerAction)
+			{
+				case CardActions.Damage:
+				{
+					int playerDamage = enemyAction != CardActions.Dodge ? (playerCard as DamageCard).CardDamage : 0;
+					enemy.health.Deal(playerDamage);
+					break;
+				}
+				case CardActions.Heal:
+				{
+					int playerHealAmount = (playerCard as HealCard).CardHealValue;
+					playerCharacter.health.Heal(playerHealAmount);
+					break;
+				}
+			}
+
+			switch (enemyAction)
+			{
+				case CardActions.Damage:
+				{
+					int enemyDamage = playerAction != CardActions.Dodge ? (enemyCard as DamageCard).CardDamage : 0;
+					playerCharacter.health.Deal(enemyDamage);
+					break;
+				}
+				case CardActions.Heal:
+				{
+					int enemyHealAmount = (enemyCard as HealCard).CardHealValue;
+					enemy.health.Heal(enemyHealAmount);
+					break;
+				}
+			}
+			
 			StartCoroutine(DisplayCardsCoroutine());
 		}
 
-		public IEnumerator DisplayCardsCoroutine()
+		private IEnumerator DisplayCardsCoroutine()
 		{
-			cardDisplaying = true;
 			float elapsedTime = 0;
-			while (elapsedTime<=cardDisplayTime)
+			while (elapsedTime <= cardDisplayTime)
 			{
 				elapsedTime += Time.deltaTime;
 				yield return null;
 			}
-			cardDisplaying = false;
+			
+			_stateMachine.ChangeState(_stateMachine.checkPlayerState);
 		}
 
-		public override void OnUpdate(StateMachine stateMachine)
-		{
-			if (!cardDisplaying)
-			{
-				switch (playerAction)
-				{
-					case CardActions.Damage:
-					{
-						int playerDamage = enemyAction != CardActions.Dodge ? (playerCard as DamageCard).CardDamage : 0;
-						enemyHealth.Deal(playerDamage);
-						break;
-					}
-					case CardActions.Heal:
-					{
-						int playerHealAmount = (playerCard as HealCard).CardHealValue;
-						playerHealth.Heal(playerHealAmount);
-						break;
-					}
-				}
-
-				switch (enemyAction)
-				{
-					case CardActions.Damage:
-					{
-						int enemyDamage = playerAction != CardActions.Dodge ? (enemyCard as DamageCard).CardDamage : 0;
-						playerHealth.Deal(enemyDamage);
-						break;
-					}
-					case CardActions.Heal:
-					{
-						int enemyHealAmount = (enemyCard as HealCard).CardHealValue;
-						enemyHealth.Heal(enemyHealAmount);
-						break;
-					}
-				}
-				displayer.PutBackCards();
-				stateMachine.ChangeState(stateMachine.checkPlayerState);
-			}
-		}
-		
-		
+		public override void OnUpdate(StateMachine stateMachine) {}
 
 		public override void OnExit(StateMachine stateMachine)
 		{
-			
+			processCardUI.HideEnemyCard();
+			processCardUI.HidePlayerCard();
 		}
 	}
 
