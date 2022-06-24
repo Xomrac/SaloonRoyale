@@ -5,6 +5,7 @@ namespace Sequencing.Points
 {
     public class EmptyPoint : Point
     {
+        #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             var cameraPoint = GetCameraPoint();
@@ -18,5 +19,6 @@ namespace Sequencing.Points
                 Gizmos.DrawWireSphere(cameraPoint.position, 0.2f);
             }
         }
+        #endif
     }
 }

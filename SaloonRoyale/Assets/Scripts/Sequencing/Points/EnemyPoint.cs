@@ -12,6 +12,7 @@ namespace Sequencing.Points
             return enemy;
         }
         
+        #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             var cameraPoint = GetCameraPoint();
@@ -34,5 +35,6 @@ namespace Sequencing.Points
                 Handles.Label(enemy.transform.position + Vector3.up * 1.5f, "Enemy");
             }
         }
+        #endif
     }
 }

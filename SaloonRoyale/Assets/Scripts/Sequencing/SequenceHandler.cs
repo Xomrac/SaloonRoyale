@@ -55,6 +55,7 @@ namespace Sequencing
             OnArrivedPoint?.Invoke(_currentPoint);
         }
 
+        #if UNITY_EDITOR
         private void OnValidate()
         {
             points.Clear();
@@ -84,5 +85,6 @@ namespace Sequencing
                 previusPoint = point;
             }
         }
+        #endif
     }
 }
