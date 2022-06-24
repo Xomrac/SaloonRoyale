@@ -19,4 +19,4 @@ MonoBehaviour:
   cardName: Whisky
   cardEffect: Cura 4 ferite
   cardBackground: {fileID: 21300000, guid: 4304e1a16fbd5ff46abbecd7d9fe0115, type: 3}
-  cardHealValue: 2
+  cardHealValue: 4
