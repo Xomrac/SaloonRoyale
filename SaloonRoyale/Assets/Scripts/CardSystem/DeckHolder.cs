@@ -58,11 +58,7 @@ namespace CardSystem
 
 		#region Methods
 
-		public bool HandIsEmpty => hand.pileCards.Count == 0;
-		public bool DrawCardsAreFinished => drawPile.pileCards.Count == 0;
-
-		public Suits GetTopCardSuit(CardPile pileToCheck) => pileToCheck.pileCards.First().CardSuit;
-
+		private bool HandIsEmpty => hand.pileCards.Count == 0;
 
 		public void RepopulateDrawPile()
 		{
@@ -71,6 +67,7 @@ namespace CardSystem
 			drawPile.pileCards = new List<Card>(shuffledCards);
 			discardPile.pileCards.Clear();
 		}
+		
 		private void ChangeCardPile([CanBeNull] Card card, CardPile fromPile, CardPile destinationPile)
 		{
 			if (fromPile.pileCards.Count > 0)
@@ -117,7 +114,7 @@ namespace CardSystem
 			{
 				for (int i = 0; i < amount; i++)
 				{
-					DrawCardFromPile(pileToDrawFrom.pileCards[0], pileToDrawFrom);
+					DrawCardFromPile(pileToDrawFrom.pileCards[i], pileToDrawFrom);
 				}
 			}
 		}
