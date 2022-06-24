@@ -14,11 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deckCards:
   - {fileID: 11400000, guid: b005ac8c7af10ef4b9538bd970cdcc37, type: 2}
-  - {fileID: 11400000, guid: 762d64e86e51e2247bfaa6a0d748fd21, type: 2}
   - {fileID: 11400000, guid: af83ea3e3dfe20a4e8d06474a639a1dd, type: 2}
   - {fileID: 11400000, guid: b8fbf36769cd1934c84aced359ab50eb, type: 2}
-  - {fileID: 11400000, guid: 3d08174286bef5f48865563106c8f15a, type: 2}
-  - {fileID: 11400000, guid: 05781a166f78ec34cb6963c8dc5b662f, type: 2}
-  - {fileID: 11400000, guid: f9becfba8b8108445aca974a9147aa2d, type: 2}
   - {fileID: 11400000, guid: f31b472248825044bb297b5e18627e5f, type: 2}
   - {fileID: 11400000, guid: 5124b6f909fef8f42924a140b781ec9b, type: 2}
